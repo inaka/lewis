@@ -1,6 +1,8 @@
 # lewis
 Rock your Android
 
+# Purpose
+
 This is an extension for Android Lint, adding new rules:
 * Every .java file must be inside a custom package, not inside the root package. WARNING
 
@@ -26,7 +28,7 @@ cd lewis/
 cp ./build/libs/lewis.jar ~/.android/lint/
 ```
 
-Verify whether the issues are registered with lint
+#### Verify whether the issues are registered with lint
 ```bash
 lint --show RootPathDetector
 ```
