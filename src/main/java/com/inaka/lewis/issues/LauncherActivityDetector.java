@@ -93,14 +93,6 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
     @Override
     public void afterCheckProject(@NonNull Context context) {
 
-        // if it is a library
-        if (context.getProject() == context.getMainProject() && context.getMainProject().isLibrary()){
-            if (mHasLauncherActivity) {
-                context.report(ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY, mApplicationTagLocation,
-                        "Expecting " + ANDROID_MANIFEST_XML + " not to have an activity with a launcher intent.");
-            }
-        }
-
         // if it's not a library, it's an application
         if (context.getProject() == context.getMainProject() && !context.getMainProject().isLibrary() && mApplicationTagLocation != null) {
 
@@ -163,6 +155,12 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
                         if (mHasLauncherActivity) {
                             context.report(ISSUE_MORE_THAN_ONE_LAUNCHER, context.getLocation(node),
                                     "Expecting " + ANDROID_MANIFEST_XML + " to have only one activity with a launcher intent.");
+                        }
+
+                        // if it is a library
+                        if (context.getProject() == context.getMainProject() && context.getMainProject().isLibrary()) {
+                            context.report(ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY, context.getLocation(node),
+                                    "Expecting " + ANDROID_MANIFEST_XML + " not to have an activity with a launcher intent.");
                         }
 
                         return true;

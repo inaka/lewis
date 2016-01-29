@@ -30,6 +30,7 @@ public class LauncherActivityTest extends LintDetectorTest {
         List<Issue> issues = new ArrayList<Issue>();
         issues.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
         issues.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
+        issues.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
         return issues;
     }
 
@@ -49,6 +50,7 @@ public class LauncherActivityTest extends LintDetectorTest {
     public void testHasMainActivity() throws Exception {
         mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
+        mEnabled.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
 
         String expected = "No warnings.";
 
@@ -80,6 +82,7 @@ public class LauncherActivityTest extends LintDetectorTest {
     public void testMissingMainActivity() throws Exception {
         mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
+        mEnabled.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
 
         String expected = "AndroidManifest.xml:4: Warning: Expecting AndroidManifest.xml to have an " +
                 "activity with a launcher intent. [MissingLauncherDetector]\n" +
@@ -129,6 +132,7 @@ public class LauncherActivityTest extends LintDetectorTest {
     public void testMissingApplication() throws Exception {
         mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
+        mEnabled.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
 
         String expected = "No warnings.";
 
@@ -145,6 +149,7 @@ public class LauncherActivityTest extends LintDetectorTest {
     public void testMissingActivities() throws Exception {
         mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
+        mEnabled.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
 
         String expected = "AndroidManifest.xml:4: Warning: Expecting AndroidManifest.xml to have an " +
                 "<activity> tag. [MissingLauncherDetector]\n" +
@@ -169,6 +174,7 @@ public class LauncherActivityTest extends LintDetectorTest {
     public void testMultipleLauncherActivities() throws Exception {
         mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
+        mEnabled.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
 
         String expected = "AndroidManifest.xml:12: Warning: Expecting AndroidManifest.xml to have only one " +
                 "activity with a launcher intent. [MoreThanOneLauncherDetector]\n" +
