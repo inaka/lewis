@@ -17,7 +17,6 @@ public class LewisIssueRegistry extends IssueRegistry {
         issues.add(RootPathDetector.ISSUE);
         issues.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
         issues.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
-//        return Collections.singletonList(RootPathDetector.ISSUE);
         return issues;
     }
 }

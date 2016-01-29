@@ -9,7 +9,6 @@ import com.android.tools.lint.detector.api.Project;
 import com.inaka.lewis.issues.LauncherActivityDetector;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +18,7 @@ import static com.android.SdkConstants.FN_ANDROID_MANIFEST_XML;
 
 public class LauncherActivityTest extends LintDetectorTest {
 
-    private Set<Issue> mEnabled = new HashSet<Issue>();
+    final private Set<Issue> mEnabled = new HashSet<Issue>();
 
     @Override
     protected Detector getDetector() {
