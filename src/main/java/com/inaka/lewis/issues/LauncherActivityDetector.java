@@ -17,13 +17,15 @@ import com.inaka.lewis.utils.Constants;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 import static com.android.SdkConstants.ANDROID_MANIFEST_XML;
 import static com.android.SdkConstants.ANDROID_URI;
 import static com.android.SdkConstants.ATTR_NAME;
 import static com.android.SdkConstants.TAG_ACTIVITY;
+import static com.android.SdkConstants.TAG_APPLICATION;
 import static com.android.SdkConstants.TAG_INTENT_FILTER;
 import static com.android.xml.AndroidManifest.NODE_ACTION;
 import static com.android.xml.AndroidManifest.NODE_CATEGORY;
@@ -36,7 +38,7 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
             "Missing Launcher Activity",
             "This app should have an activity with a launcher intent.",
             Category.CORRECTNESS,
-            3,
+            5,
             Severity.WARNING,
             new Implementation(LauncherActivityDetector.class, Scope.MANIFEST_SCOPE));
 
@@ -45,7 +47,7 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
             "More than one Launcher Activity",
             "This app should have only one activity with a launcher intent.",
             Category.CORRECTNESS,
-            3,
+            5,
             Severity.WARNING,
             new Implementation(LauncherActivityDetector.class, Scope.MANIFEST_SCOPE));
 
@@ -55,73 +57,71 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
     private boolean mHasActivity;
 
     /**
-     * The manifest file location for the main project, null if there is no manifest.
+     * This will be true if there is a launcher activity
      */
-    private Location mManifestLocation;
+    private boolean mHasLauncherActivity;
 
     /**
-     * This is the counter of launcher activities
+     * The lacation of the <application> tag
      */
-    private int mLauncherActivitiesCounter;
+    private Location mApplicationTagLocation;
 
     @Override
     public Collection<String> getApplicableElements() {
-        return Collections.singleton(TAG_ACTIVITY);
+        List<String> elements = new ArrayList<String>();
+        elements.add(TAG_ACTIVITY);
+        elements.add(TAG_APPLICATION);
+        return elements;
     }
 
     @Override
     public void beforeCheckProject(@NonNull Context context) {
         mHasActivity = false;
-        mManifestLocation = null;
-        mLauncherActivitiesCounter = 0;
+        mHasLauncherActivity = false;
+        mApplicationTagLocation = null;
     }
 
     @Override
     public void afterCheckProject(@NonNull Context context) {
 
         // Don't report issues on libraries
-        if (context.getProject() == context.getMainProject() && !context.getMainProject().isLibrary() && mManifestLocation != null) {
+        if (context.getProject() == context.getMainProject() && !context.getMainProject().isLibrary() && mApplicationTagLocation != null) {
 
             if (!mHasActivity) {
-                context.report(ISSUE_MISSING_LAUNCHER, mManifestLocation,
+                context.report(ISSUE_MISSING_LAUNCHER, mApplicationTagLocation,
                         "Expecting " + ANDROID_MANIFEST_XML + " to have an <" + TAG_ACTIVITY + "> tag.");
-            } else if (mLauncherActivitiesCounter == 0) {
-                context.report(ISSUE_MISSING_LAUNCHER, mManifestLocation,
+            } else if (!mHasLauncherActivity) {
+                context.report(ISSUE_MISSING_LAUNCHER, mApplicationTagLocation,
                         "Expecting " + ANDROID_MANIFEST_XML + " to have an activity with a launcher intent.");
-            } else if (mLauncherActivitiesCounter > 1) {
-                context.report(ISSUE_MORE_THAN_ONE_LAUNCHER, mManifestLocation,
-                        "Expecting " + ANDROID_MANIFEST_XML + " to have only one activity with a launcher intent.");
             }
+
         }
     }
 
     @Override
-    public void afterCheckFile(@NonNull Context context) {
-        // Store a reference to the manifest file in case we need to report it's location.
-        if (context.getProject() == context.getMainProject()) {
-            mManifestLocation = Location.create(context.file);
-        }
-    }
-
-    @Override
-    public void visitElement(XmlContext context, Element activityElement) {
-        // Checks every activity and reports an error if there is no activity with a launcher intent.
-        mHasActivity = true;
-        if (isMainActivity(activityElement)) {
-            mLauncherActivitiesCounter++;
+    public void visitElement(XmlContext context, Element element) {
+        if (isMainActivity(context, element)) {
+            mHasLauncherActivity = true;
         }
     }
 
     /**
      * Returns true if the XML node is an activity with a launcher intent.
      *
-     * @param activityNode The node to check.
+     * @param node The node to check.
      * @return true if the node is an activity with a launcher intent.
      */
-    private boolean isMainActivity(Node activityNode) {
-        if (TAG_ACTIVITY.equals(activityNode.getNodeName())) {
+    private boolean isMainActivity(XmlContext context, Node node) {
 
-            for (Element activityChild : LintUtils.getChildren(activityNode)) {
+        if (TAG_APPLICATION.equals(node.getNodeName())) {
+            mApplicationTagLocation = context.getLocation(node);
+        }
+
+        if (TAG_ACTIVITY.equals(node.getNodeName())) {
+
+            mHasActivity = true;
+
+            for (Element activityChild : LintUtils.getChildren(node)) {
                 if (TAG_INTENT_FILTER.equals(activityChild.getNodeName())) {
 
                     boolean hasLauncherCategory = false;
@@ -143,6 +143,11 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
                     }
 
                     if (hasLauncherCategory && hasMainAction) {
+                        if (mHasLauncherActivity) {
+                            context.report(ISSUE_MORE_THAN_ONE_LAUNCHER, context.getLocation(node),
+                                    "Expecting " + ANDROID_MANIFEST_XML + " to have only one activity with a launcher intent.");
+                        }
+
                         return true;
                     }
                 }

@@ -81,8 +81,10 @@ public class LauncherActivityTest extends LintDetectorTest {
         mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
 
-        String expected = "AndroidManifest.xml: Warning: Expecting AndroidManifest.xml to have an " +
+        String expected = "AndroidManifest.xml:4: Warning: Expecting AndroidManifest.xml to have an " +
                 "activity with a launcher intent. [MissingLauncherDetector]\n" +
+                "    <application>\n" +
+                "    ^\n" +
                 "0 errors, 1 warnings\n";
 
         String result = lintProject(xml(FN_ANDROID_MANIFEST_XML, "" +
@@ -122,20 +124,40 @@ public class LauncherActivityTest extends LintDetectorTest {
     }
 
     /**
-     * Test that a manifest without an application tag reports an error.
+     * Test that a manifest without an application tag has no warnings.
      */
     public void testMissingApplication() throws Exception {
         mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
 
-        String expected = "AndroidManifest.xml: Warning: Expecting AndroidManifest.xml to have an " +
+        String expected = "No warnings.";
+
+
+        String result = lintProject(xml(FN_ANDROID_MANIFEST_XML, "" +
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                "<manifest package=\"com.example.android.custom-lint-rules\"\n" +
+                "          xmlns:android=\"http://schemas.android.com/apk/res/android\">\n" +
+                "</manifest>"));
+
+        assertEquals(expected, result);
+    }
+
+    public void testMissingActivities() throws Exception {
+        mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
+        mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
+
+        String expected = "AndroidManifest.xml:4: Warning: Expecting AndroidManifest.xml to have an " +
                 "<activity> tag. [MissingLauncherDetector]\n" +
+                "    <application>\n" +
+                "    ^\n" +
                 "0 errors, 1 warnings\n";
 
         String result = lintProject(xml(FN_ANDROID_MANIFEST_XML, "" +
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<manifest package=\"com.example.android.custom-lint-rules\"\n" +
                 "          xmlns:android=\"http://schemas.android.com/apk/res/android\">\n" +
+                "    <application>\n" +
+                "    </application>\n" +
                 "</manifest>"));
 
         assertEquals(expected, result);
@@ -148,8 +170,10 @@ public class LauncherActivityTest extends LintDetectorTest {
         mEnabled.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         mEnabled.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
 
-        String expected = "AndroidManifest.xml: Warning: Expecting AndroidManifest.xml to have only one " +
+        String expected = "AndroidManifest.xml:12: Warning: Expecting AndroidManifest.xml to have only one " +
                 "activity with a launcher intent. [MoreThanOneLauncherDetector]\n" +
+                "        <activity android:name=\"com.example.android.custom-lint-rules.MainActivity\">\n" +
+                "        ^\n" +
                 "0 errors, 1 warnings\n";
 
         String result = lintProject(xml(FN_ANDROID_MANIFEST_XML, "" +
