@@ -28,7 +28,7 @@ public class LauncherActivityTest extends LintDetectorTest {
 
     @Override
     protected List<Issue> getIssues() {
-        List<Issue> issues = new ArrayList<>();
+        List<Issue> issues = new ArrayList<Issue>();
         issues.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
         issues.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         return issues;
