@@ -1,0 +1,25 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+// JDK 1.6 is required to support all versions of Android Studio.
+// See http://tools.android.com/build/studio.
+sourceCompatibility = 1.6
+dependencies {
+    compile 'com.android.tools.lint:lint-api:24.3.1'
+    compile 'com.android.tools.lint:lint-checks:24.3.1'
+    testCompile 'junit:junit:4.11'
+    testCompile 'com.android.tools.lint:lint:24.3.1'
+    testCompile 'com.android.tools.lint:lint-tests:24.3.1'
+    testCompile 'com.android.tools:testutils:24.3.1'
+}
+
+jar {
+    manifest {
+        attributes("Lint-Registry": "com.inaka.lewis.LewisIssueRegistry")
+    }
+}
+
+defaultTasks 'assemble'
