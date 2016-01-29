@@ -10,32 +10,32 @@ This is an extension for Android Lint, adding new rules:
 
 ## Getting started
 
-1. Clone the repository
+Clone the repository
 ```bash
 git clone https://github.com/inaka/lewis.git
 ```
 
-2. Enter to the project
+Enter to the project
 ```bash
 cd lewis/
 ```
 
-3. Build it
+Build it
 ```bash
 ./gradlew build
 ```
 
-4. Copy the .jar file to the lint folder
+Copy the .jar file to the lint folder
 ```bash
 cp ./build/libs/lewis.jar ~/.android/lint/
 ```
 
-5. Verify whether the issues are registered with lint
+Verify whether the issues are registered with lint
 ```bash
 lint --show RootPackageDetector
 ```
 
-6. Run lint
+Run lint
 ```bash
 ./gradlew lint
 ```
@@ -43,7 +43,7 @@ lint --show RootPackageDetector
 >
 >    Then run source ~/.bash_profile.
 
-#### Disable an issue
+#### How to disable an issue
  Add on your build.gradle file
 ```groovy
 android {
