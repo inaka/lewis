@@ -11,6 +11,6 @@ import java.util.List;
 public class LewisIssueRegistry extends IssueRegistry {
     @Override
     public List<Issue> getIssues() {
-        return Collections.singletonList(RootPathDetector.ISSUE);
+        return Collections.singletonList(RootPackageDetector.ISSUE);
     }
 }
