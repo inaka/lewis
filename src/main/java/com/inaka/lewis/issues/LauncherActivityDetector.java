@@ -100,7 +100,7 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
                         "Expecting " + ANDROID_MANIFEST_XML + " not to have an activity with a launcher intent.");
             }
         }
-        
+
         // if it's not a library, it's an application
         if (context.getProject() == context.getMainProject() && !context.getMainProject().isLibrary() && mApplicationTagLocation != null) {
 
