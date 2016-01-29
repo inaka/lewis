@@ -4,7 +4,7 @@ Rock your Android
 ## Purpose
 
 This is an extension for Android Lint, adding new rules:
-* Every .java file must be inside a custom package, not inside the root package. WARNING
+* Every .java file must be inside a custom package, not inside the root package. ERROR
 
 ## Getting started
 
