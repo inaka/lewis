@@ -6,7 +6,7 @@ import com.android.tools.lint.client.api.LintClient;
 import com.android.tools.lint.detector.api.Detector;
 import com.android.tools.lint.detector.api.Issue;
 import com.android.tools.lint.detector.api.Project;
-import com.inaka.lewis.issues.RootPathDetector;
+import com.inaka.lewis.issues.RootPackageDetector;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -23,12 +23,12 @@ public class RootPathTest extends LintDetectorTest {
 
     @Override
     protected Detector getDetector() {
-        return new RootPathDetector();
+        return new RootPackageDetector();
     }
 
     @Override
     protected List<Issue> getIssues() {
-        return Collections.singletonList(RootPathDetector.ISSUE);
+        return Collections.singletonList(RootPackageDetector.ISSUE);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class RootPathTest extends LintDetectorTest {
      * @throws Exception
      */
     public void testAdditionIsCorrect() throws Exception {
-        mEnabled = Collections.singleton(RootPathDetector.ISSUE);
+        mEnabled = Collections.singleton(RootPackageDetector.ISSUE);
         String expected = "No warnings.";
         String result = lintProject(java("Example.class", "" + "class Example {}"));
         assertEquals(expected, result);
