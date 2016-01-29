@@ -1,4 +1,4 @@
-package com.inaka.lewis;
+package com.inaka.lewis.issueRegistry;
 
 import com.android.tools.lint.client.api.IssueRegistry;
 import com.android.tools.lint.detector.api.Issue;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class LewisIssueRegistry extends IssueRegistry {
+
     @Override
     public List<Issue> getIssues() {
         List<Issue> issues = new ArrayList<Issue>();
@@ -18,6 +19,6 @@ public class LewisIssueRegistry extends IssueRegistry {
         issues.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
         issues.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         return issues;
-//        return Collections.singletonList(RootPackageDetector.ISSUE);
     }
+
 }

@@ -21,7 +21,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes("Lint-Registry": "com.inaka.lewis.LewisIssueRegistry")
+        attributes("Lint-Registry": "com.inaka.lewis.issueRegistry.LewisIssueRegistry")
     }
 }
 
