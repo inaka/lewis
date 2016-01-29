@@ -6,6 +6,7 @@ import com.android.tools.lint.client.api.LintClient;
 import com.android.tools.lint.detector.api.Detector;
 import com.android.tools.lint.detector.api.Issue;
 import com.android.tools.lint.detector.api.Project;
+import com.inaka.lewis.issues.RootPackageDetector;
 
 import java.util.Collections;
 import java.util.HashSet;
