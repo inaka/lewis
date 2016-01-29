@@ -22,8 +22,8 @@ public class RootPathDetector extends Detector implements Detector.JavaScanner {
             "Class should not be inside root package",
             "All classes should be inside a custom package inside the root package.",
             Category.CORRECTNESS,
-            2,
-            Severity.WARNING,
+            8,
+            Severity.ERROR,
             new Implementation(RootPathDetector.class, Scope.JAVA_FILE_SCOPE));
 
     @Override
