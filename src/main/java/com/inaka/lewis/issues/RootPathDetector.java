@@ -1,4 +1,4 @@
-package com.inaka.lewis;
+package com.inaka.lewis.issues;
 
 import com.android.annotations.NonNull;
 import com.android.tools.lint.detector.api.Category;
