@@ -51,6 +51,15 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
             Severity.WARNING,
             new Implementation(LauncherActivityDetector.class, Scope.MANIFEST_SCOPE));
 
+    public static final Issue ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY = Issue.create(
+            "LauncherActivityInLibrary",
+            "Launcher Activity in library",
+            "This library should not have activities with a launcher intent.",
+            Category.CORRECTNESS,
+            8,
+            Severity.ERROR,
+            new Implementation(LauncherActivityDetector.class, Scope.MANIFEST_SCOPE));
+
     /**
      * This will be true if the current file we're checking has at least one activity.
      */
@@ -84,7 +93,15 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
     @Override
     public void afterCheckProject(@NonNull Context context) {
 
-        // Don't report issues on libraries
+        // if it is a library
+        if (context.getProject() == context.getMainProject() && context.getMainProject().isLibrary()){
+            if (mHasLauncherActivity) {
+                context.report(ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY, mApplicationTagLocation,
+                        "Expecting " + ANDROID_MANIFEST_XML + " not to have an activity with a launcher intent.");
+            }
+        }
+        
+        // if it's not a library, it's an application
         if (context.getProject() == context.getMainProject() && !context.getMainProject().isLibrary() && mApplicationTagLocation != null) {
 
             if (!mHasActivity) {
