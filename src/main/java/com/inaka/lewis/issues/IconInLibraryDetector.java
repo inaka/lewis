@@ -13,7 +13,6 @@ import com.android.tools.lint.detector.api.Severity;
 import com.android.tools.lint.detector.api.XmlContext;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,7 +22,7 @@ import java.util.List;
 import static com.android.SdkConstants.ANDROID_MANIFEST_XML;
 import static com.android.SdkConstants.TAG_APPLICATION;
 
-public class IconDetector extends ResourceXmlDetector implements Detector.XmlScanner {
+public class IconInLibraryDetector extends ResourceXmlDetector implements Detector.XmlScanner {
 
     public static final Issue ISSUE_ICON_IN_LIBRARY = Issue.create(
             "IconInLibraryDetector",
@@ -32,9 +31,8 @@ public class IconDetector extends ResourceXmlDetector implements Detector.XmlSca
             Category.CORRECTNESS,
             8,
             Severity.ERROR,
-            new Implementation(IconDetector.class, Scope.MANIFEST_SCOPE));
+            new Implementation(IconInLibraryDetector.class, Scope.MANIFEST_SCOPE));
 
-    private List<Node> mApplicationTagsWithIcon;
     private List<Location> mIconAttributesLocations;
 
     @Override
@@ -44,7 +42,6 @@ public class IconDetector extends ResourceXmlDetector implements Detector.XmlSca
 
     @Override
     public void beforeCheckProject(@NonNull Context context) {
-        mApplicationTagsWithIcon = new ArrayList<Node>();
         mIconAttributesLocations = new ArrayList<Location>();
     }
 
@@ -52,7 +49,6 @@ public class IconDetector extends ResourceXmlDetector implements Detector.XmlSca
     public void visitElement(XmlContext context, Element element) {
 
         if (!element.getAttribute("icon").equals("")) {
-            mApplicationTagsWithIcon.add(element);
             mIconAttributesLocations.add(context.getLocation(element.getAttributes().getNamedItem("icon")));
         }
 

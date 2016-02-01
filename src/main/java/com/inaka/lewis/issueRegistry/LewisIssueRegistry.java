@@ -2,7 +2,7 @@ package com.inaka.lewis.issueRegistry;
 
 import com.android.tools.lint.client.api.IssueRegistry;
 import com.android.tools.lint.detector.api.Issue;
-import com.inaka.lewis.issues.IconDetector;
+import com.inaka.lewis.issues.IconInLibraryDetector;
 import com.inaka.lewis.issues.LauncherActivityDetector;
 import com.inaka.lewis.issues.RootPackageDetector;
 
@@ -20,7 +20,7 @@ public class LewisIssueRegistry extends IssueRegistry {
         issues.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
         issues.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         issues.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
-        issues.add(IconDetector.ISSUE_ICON_IN_LIBRARY);
+        issues.add(IconInLibraryDetector.ISSUE_ICON_IN_LIBRARY);
         return issues;
     }
 
