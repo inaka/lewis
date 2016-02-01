@@ -20,48 +20,44 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.android.SdkConstants.ANDROID_MANIFEST_XML;
-import static com.android.SdkConstants.TAG_APPLICATION;
+import static com.android.SdkConstants.TAG_USES_PERMISSION;
 
-public class IconInLibraryDetector extends ResourceXmlDetector implements Detector.XmlScanner {
+public class PermissionsInLibraryDetector extends ResourceXmlDetector implements Detector.XmlScanner {
 
-    public static final Issue ISSUE_ICON_IN_LIBRARY = Issue.create(
-            "IconInLibraryDetector",
-            "Icon in library",
-            "This library should not have an icon.",
+    public static final Issue ISSUE_PERMISSION_USAGE_IN_LIBRARY = Issue.create(
+            "PermissionUsageInLibraryDetector",
+            "Permission usage in library",
+            "This library should not have a permission invocation.",
             Category.CORRECTNESS,
             8,
             Severity.ERROR,
-            new Implementation(IconInLibraryDetector.class, Scope.MANIFEST_SCOPE));
+            new Implementation(PermissionsInLibraryDetector.class, Scope.MANIFEST_SCOPE));
 
-    private List<Location> mIconAttributesLocations;
+    private List<Location> mPermissionTagsLocations;
 
     @Override
     public Collection<String> getApplicableElements() {
-        return Collections.singletonList(TAG_APPLICATION);
+        return Collections.singletonList(TAG_USES_PERMISSION);
     }
 
     @Override
     public void beforeCheckProject(@NonNull Context context) {
-        mIconAttributesLocations = new ArrayList<Location>();
+        mPermissionTagsLocations = new ArrayList<Location>();
     }
 
     @Override
     public void visitElement(XmlContext context, Element element) {
-
-        if (!element.getAttribute("icon").equals("")) {
-            mIconAttributesLocations.add(context.getLocation(element.getAttributes().getNamedItem("icon")));
-        }
-
+        mPermissionTagsLocations.add(context.getLocation(element));
     }
 
     @Override
     public void afterCheckProject(@NonNull Context context) {
 
-        // if it's a library
+        // if it's not a library, it's an application
         if (context.getProject() == context.getMainProject() && context.getMainProject().isLibrary()) {
-            for (int i = 0; i < mIconAttributesLocations.size(); i++) {
-                context.report(ISSUE_ICON_IN_LIBRARY, mIconAttributesLocations.get(i),
-                        "Expecting " + ANDROID_MANIFEST_XML + " not to have an icon inside <" + TAG_APPLICATION + "> tag");
+            for (Location location : mPermissionTagsLocations) {
+                context.report(ISSUE_PERMISSION_USAGE_IN_LIBRARY, location,
+                        "Expecting " + ANDROID_MANIFEST_XML + " not to have a <" + TAG_USES_PERMISSION + "> tag invocation");
             }
         }
     }

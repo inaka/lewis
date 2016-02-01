@@ -46,10 +46,13 @@ public class RootPathTest extends LintDetectorTest {
      *
      * @throws Exception
      */
-    public void testAdditionIsCorrect() throws Exception {
+    public void testNotInRoot() throws Exception {
         mEnabled = Collections.singleton(RootPackageDetector.ISSUE_CLASS_IN_ROOT_PACKAGE);
+
         String expected = "No warnings.";
+
         String result = lintProject(java("Example.class", "" + "class Example {}"));
+
         assertEquals(expected, result);
     }
 }
