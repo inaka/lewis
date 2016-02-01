@@ -21,7 +21,7 @@ import lombok.ast.Node;
 public class RootPackageDetector extends Detector implements Detector.JavaScanner {
 
     public static final Issue ISSUE_CLASS_IN_ROOT_PACKAGE = Issue.create(
-            "RootPackageDetector",
+            "RootPackage",
             "Java file should not be inside root package",
             "Every .java file should be inside a custom package inside the root package.",
             Category.CORRECTNESS,

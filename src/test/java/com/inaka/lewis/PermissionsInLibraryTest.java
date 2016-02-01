@@ -6,7 +6,6 @@ import com.android.tools.lint.client.api.LintClient;
 import com.android.tools.lint.detector.api.Detector;
 import com.android.tools.lint.detector.api.Issue;
 import com.android.tools.lint.detector.api.Project;
-import com.inaka.lewis.issues.LauncherActivityDetector;
 import com.inaka.lewis.issues.PermissionsInLibraryDetector;
 
 import java.util.Collections;
@@ -15,11 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 import static com.android.SdkConstants.FN_ANDROID_MANIFEST_XML;
-import static com.android.SdkConstants.FN_ANT_PROPERTIES;
-import static com.android.SdkConstants.FN_BUILD_GRADLE;
-import static com.android.SdkConstants.FN_GRADLE_WRAPPER_PROPERTIES;
-import static com.android.SdkConstants.FN_LOCAL_PROPERTIES;
-import static com.android.SdkConstants.FN_PROJECT_PROPERTIES;
 
 public class PermissionsInLibraryTest extends LintDetectorTest {
 
@@ -45,7 +39,7 @@ public class PermissionsInLibraryTest extends LintDetectorTest {
         };
     }
 
-    public void testNoPermissions() throws Exception{
+    public void testNoPermissions() throws Exception {
         mEnabled.add(PermissionsInLibraryDetector.ISSUE_PERMISSION_USAGE_IN_LIBRARY);
 
         String expected = "No warnings.";
@@ -68,7 +62,7 @@ public class PermissionsInLibraryTest extends LintDetectorTest {
         assertEquals(expected, result);
     }
 
-    public void testPermissionsButIsNotALibrary() throws Exception{
+    public void testPermissionsButIsNotALibrary() throws Exception {
         mEnabled.add(PermissionsInLibraryDetector.ISSUE_PERMISSION_USAGE_IN_LIBRARY);
 
         String expected = "No warnings.";

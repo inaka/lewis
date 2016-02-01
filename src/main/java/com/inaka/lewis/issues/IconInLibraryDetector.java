@@ -22,13 +22,12 @@ import java.util.List;
 import static com.android.SdkConstants.ANDROID_MANIFEST_XML;
 import static com.android.SdkConstants.ANDROID_URI;
 import static com.android.SdkConstants.ATTR_ICON;
-import static com.android.SdkConstants.ATTR_NAME;
 import static com.android.SdkConstants.TAG_APPLICATION;
 
 public class IconInLibraryDetector extends ResourceXmlDetector implements Detector.XmlScanner {
 
     public static final Issue ISSUE_ICON_IN_LIBRARY = Issue.create(
-            "IconInLibraryDetector",
+            "IconInLibrary",
             "Icon in library",
             "This library should not have an icon.",
             Category.CORRECTNESS,

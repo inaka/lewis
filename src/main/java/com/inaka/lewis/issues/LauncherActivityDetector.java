@@ -34,7 +34,7 @@ import static com.android.xml.AndroidManifest.NODE_CATEGORY;
 public class LauncherActivityDetector extends ResourceXmlDetector implements Detector.XmlScanner {
 
     public static final Issue ISSUE_MISSING_LAUNCHER = Issue.create(
-            "MissingLauncherDetector",
+            "MissingLauncher",
             "Missing Launcher Activity",
             "This app should have an activity with a launcher intent.",
             Category.CORRECTNESS,
@@ -43,7 +43,7 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
             new Implementation(LauncherActivityDetector.class, Scope.MANIFEST_SCOPE));
 
     public static final Issue ISSUE_MORE_THAN_ONE_LAUNCHER = Issue.create(
-            "MoreThanOneLauncherDetector",
+            "MoreThanOneLauncher",
             "More than one Launcher Activity",
             "This app should have only one activity with a launcher intent.",
             Category.CORRECTNESS,

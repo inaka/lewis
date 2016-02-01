@@ -25,7 +25,7 @@ import static com.android.SdkConstants.TAG_USES_PERMISSION;
 public class PermissionsInLibraryDetector extends ResourceXmlDetector implements Detector.XmlScanner {
 
     public static final Issue ISSUE_PERMISSION_USAGE_IN_LIBRARY = Issue.create(
-            "PermissionUsageInLibraryDetector",
+            "PermissionUsageInLibrary",
             "Permission usage in library",
             "This library should not have a permission invocation.",
             Category.CORRECTNESS,
