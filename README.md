@@ -13,7 +13,7 @@ This is an extension for Android Lint, adding new rules:
 
 ## Getting started
 
-Clone the repository
+Clone this repository
 ```bash
 git clone https://github.com/inaka/lewis.git
 ```
@@ -47,7 +47,7 @@ Run lint
 >    Then run `source ~/.bash_profile`.
 
 #### How to disable an issue
- Add on your build.gradle file
+ Add on your `build.gradle` file
 ```groovy
 android {
     lintOptions {
