@@ -4,12 +4,12 @@ Rock your Android
 ## Purpose
 
 This is an extension for Android Lint, adding new rules:
-* RootPackageDetector: Every .java file must be inside a custom package, not inside the root package. `ERROR`
-* MissingLauncherDetector: Every application must have at least one launcher activity. `WARNING`
-* MoreThanOneLauncherDetector: The application must have only one launcher activity. `WARNING`
-* LauncherActivityInLibrary: A library must not have a launcher activity. `ERROR`
-* IconInLibraryDetector: A library must not have icons. `ERROR`
-* PermissionUsageInLibraryDetector: A library must not use permissions. `ERROR`
+* _RootPackageDetector_: Every .java file must be inside a custom package, not inside the root package. `ERROR`
+* _MissingLauncherDetector_: Every application must have at least one launcher activity. `WARNING`
+* _MoreThanOneLauncherDetector_: The application must have only one launcher activity. `WARNING`
+* _LauncherActivityInLibrary_: A library must not have a launcher activity. `ERROR`
+* _IconInLibraryDetector_: A library must not have icons. `ERROR`
+* _PermissionUsageInLibraryDetector_: A library must not use permissions. `ERROR`
 
 ## Getting started
 
