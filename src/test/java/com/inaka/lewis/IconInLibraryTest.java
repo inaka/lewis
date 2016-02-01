@@ -7,7 +7,6 @@ import com.android.tools.lint.detector.api.Detector;
 import com.android.tools.lint.detector.api.Issue;
 import com.android.tools.lint.detector.api.Project;
 import com.inaka.lewis.issues.IconInLibraryDetector;
-import com.inaka.lewis.issues.LauncherActivityDetector;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -40,7 +39,7 @@ public class IconInLibraryTest extends LintDetectorTest {
         };
     }
 
-    public void testNoIcon() throws Exception{
+    public void testNoIcon() throws Exception {
         mEnabled.add(IconInLibraryDetector.ISSUE_ICON_IN_LIBRARY);
 
         String expected = "No warnings.";
@@ -60,7 +59,7 @@ public class IconInLibraryTest extends LintDetectorTest {
         assertEquals(expected, result);
     }
 
-    public void testIconButIsApp() throws Exception{
+    public void testIconButIsApp() throws Exception {
         mEnabled.add(IconInLibraryDetector.ISSUE_ICON_IN_LIBRARY);
 
         String expected = "No warnings.";

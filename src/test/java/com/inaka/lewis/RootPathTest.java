@@ -28,7 +28,7 @@ public class RootPathTest extends LintDetectorTest {
 
     @Override
     protected List<Issue> getIssues() {
-        return Collections.singletonList(RootPackageDetector.ISSUE);
+        return Collections.singletonList(RootPackageDetector.ISSUE_CLASS_IN_ROOT_PACKAGE);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class RootPathTest extends LintDetectorTest {
      * @throws Exception
      */
     public void testAdditionIsCorrect() throws Exception {
-        mEnabled = Collections.singleton(RootPackageDetector.ISSUE);
+        mEnabled = Collections.singleton(RootPackageDetector.ISSUE_CLASS_IN_ROOT_PACKAGE);
         String expected = "No warnings.";
         String result = lintProject(java("Example.class", "" + "class Example {}"));
         assertEquals(expected, result);

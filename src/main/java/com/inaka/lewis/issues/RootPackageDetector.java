@@ -17,7 +17,7 @@ import lombok.ast.ForwardingAstVisitor;
 
 public class RootPackageDetector extends Detector implements Detector.JavaScanner {
 
-    public static final Issue ISSUE = Issue.create(
+    public static final Issue ISSUE_CLASS_IN_ROOT_PACKAGE = Issue.create(
             "RootPackageDetector",
             "Class should not be inside root package",
             "All classes should be inside a custom package inside the root package.",
@@ -43,7 +43,7 @@ public class RootPackageDetector extends Detector implements Detector.JavaScanne
 
                 if (filePackageString.equals(packageName + "." + fileName + ".java")
                         && !previousPath.contains("generated")) {
-                    context.report(ISSUE, nodeLocation,
+                    context.report(ISSUE_CLASS_IN_ROOT_PACKAGE, nodeLocation,
                             " Expecting " + fileName + " not to be in root package " + packageName);
                 }
 

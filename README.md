@@ -8,6 +8,7 @@ This is an extension for Android Lint, adding new rules:
 * MissingLauncherDetector: Every application must have at least one launcher activity. WARNING
 * MoreThanOneLauncherDetector: The application must have only one launcher activity. WARNING
 * LauncherActivityInLibrary: A library must not have a launcher activity. ERROR
+* IconInLibraryDetector: A library must not have icons. ERROR
 
 ## Getting started
 

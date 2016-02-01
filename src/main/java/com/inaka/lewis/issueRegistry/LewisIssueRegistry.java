@@ -16,7 +16,7 @@ public class LewisIssueRegistry extends IssueRegistry {
     @Override
     public List<Issue> getIssues() {
         List<Issue> issues = new ArrayList<Issue>();
-        issues.add(RootPackageDetector.ISSUE);
+        issues.add(RootPackageDetector.ISSUE_CLASS_IN_ROOT_PACKAGE);
         issues.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
         issues.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
         issues.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
