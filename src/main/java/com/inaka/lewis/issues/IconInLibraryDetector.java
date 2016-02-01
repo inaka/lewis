@@ -20,6 +20,9 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.android.SdkConstants.ANDROID_MANIFEST_XML;
+import static com.android.SdkConstants.ANDROID_URI;
+import static com.android.SdkConstants.ATTR_ICON;
+import static com.android.SdkConstants.ATTR_NAME;
 import static com.android.SdkConstants.TAG_APPLICATION;
 
 public class IconInLibraryDetector extends ResourceXmlDetector implements Detector.XmlScanner {
@@ -48,8 +51,8 @@ public class IconInLibraryDetector extends ResourceXmlDetector implements Detect
     @Override
     public void visitElement(XmlContext context, Element element) {
 
-        if (!element.getAttribute("icon").equals("")) {
-            mIconAttributesLocations.add(context.getLocation(element.getAttributes().getNamedItem("icon")));
+        if (!element.getAttributeNS(ANDROID_URI, ATTR_ICON).equals("")) {
+            mIconAttributesLocations.add(context.getLocation(element.getAttributeNodeNS(ANDROID_URI, ATTR_ICON)));
         }
 
     }
