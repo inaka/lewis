@@ -25,7 +25,12 @@ Enter to the project
 cd lewis/
 ```
 
-Build it and install it
+Build it 
+```bash
+./gradlew build
+```
+
+Install it
 ```bash
 ./gradlew install
 ```
@@ -35,7 +40,7 @@ Verify whether the issues are registered with lint
 lint --show RootPackage
 ```
 
-Run lint
+Go to any Android project and run lint
 ```bash
 ./gradlew lint
 ```
