@@ -85,7 +85,7 @@ public class LauncherActivityTest extends LintDetectorTest {
         mEnabled.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
 
         String expected = "AndroidManifest.xml:4: Warning: Expecting AndroidManifest.xml to have an " +
-                "activity with a launcher intent. [MissingLauncherDetector]\n" +
+                "activity with a launcher intent. [MissingLauncher]\n" +
                 "    <application>\n" +
                 "    ^\n" +
                 "0 errors, 1 warnings\n";
@@ -152,7 +152,7 @@ public class LauncherActivityTest extends LintDetectorTest {
         mEnabled.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
 
         String expected = "AndroidManifest.xml:4: Warning: Expecting AndroidManifest.xml to have an " +
-                "<activity> tag. [MissingLauncherDetector]\n" +
+                "<activity> tag. [MissingLauncher]\n" +
                 "    <application>\n" +
                 "    ^\n" +
                 "0 errors, 1 warnings\n";
@@ -177,7 +177,7 @@ public class LauncherActivityTest extends LintDetectorTest {
         mEnabled.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
 
         String expected = "AndroidManifest.xml:12: Warning: Expecting AndroidManifest.xml to have only one " +
-                "activity with a launcher intent. [MoreThanOneLauncherDetector]\n" +
+                "activity with a launcher intent. [MoreThanOneLauncher]\n" +
                 "        <activity android:name=\"com.example.android.custom-lint-rules.MainActivity\">\n" +
                 "        ^\n" +
                 "0 errors, 1 warnings\n";
