@@ -9,6 +9,7 @@ import com.android.tools.lint.detector.api.JavaContext;
 import com.android.tools.lint.detector.api.Location;
 import com.android.tools.lint.detector.api.Scope;
 import com.android.tools.lint.detector.api.Severity;
+import com.inaka.lewis.utils.PackageManager;
 
 import lombok.ast.AstVisitor;
 import lombok.ast.ClassDeclaration;
@@ -56,18 +57,15 @@ public class RootPackageDetector extends Detector implements Detector.JavaScanne
     }
 
     private void shouldNotBeInRootPackage(JavaContext context, Node node, String fileName) {
+
         String packageName = context.getMainProject().getPackage();
-        Location nodeLocation = context.getLocation(node);
 
-        String classLocationString = nodeLocation.getFile().toString().replaceAll("/", ".");
-
-        int findPackage = classLocationString.lastIndexOf(packageName);
-        String filePackageString = classLocationString.substring(findPackage);
-        String previousPath = classLocationString.substring(0, findPackage);
+        String filePackageString = PackageManager.getPackage(context, node);
+        String previousPath = PackageManager.getPreviousPackage(context, node);
 
         if (filePackageString.equals(packageName + "." + fileName + ".java")
                 && !previousPath.contains("generated")) {
-            context.report(ISSUE_CLASS_IN_ROOT_PACKAGE, nodeLocation,
+            context.report(ISSUE_CLASS_IN_ROOT_PACKAGE, PackageManager.getNodeLocation(context, node),
                     " Expecting " + fileName + " not to be in root package " + packageName);
         }
 
