@@ -25,7 +25,7 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
     public static final Issue ISSUE_INSTANCE_VARIABLE_NAME = Issue.create(
             "InstanceVariableName",
             "An instance variable should be named beginning with 'm' and using camelCase.",
-            "Every instance variable should be named beginning with 'm' and be written using camelCase, for example: 'mCounter'." +
+            "Every instance variable should be named beginning with 'm' and using camelCase, for example: 'mCounter'." +
                     "Except if the class is a model (should be inside a package called 'models').",
             Category.TYPOGRAPHY,
             4,
