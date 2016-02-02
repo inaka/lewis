@@ -26,3 +26,16 @@ jar {
 }
 
 defaultTasks 'assemble'
+
+configurations {
+    lintChecks
+}
+
+dependencies {
+    lintChecks files(jar)
+}
+
+task install(type: Copy) {
+    from configurations.lintChecks
+    into System.getProperty("user.home") + '/.android/lint/'
+}

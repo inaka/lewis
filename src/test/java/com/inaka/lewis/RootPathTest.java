@@ -41,11 +41,6 @@ public class RootPathTest extends LintDetectorTest {
         };
     }
 
-    /**
-     * Test
-     *
-     * @throws Exception
-     */
     public void testNotInRoot() throws Exception {
         mEnabled = Collections.singleton(RootPackageDetector.ISSUE_CLASS_IN_ROOT_PACKAGE);
 

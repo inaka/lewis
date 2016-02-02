@@ -30,7 +30,7 @@ public class IconInLibraryDetector extends ResourceXmlDetector implements Detect
             "IconInLibrary",
             "Icon in library",
             "This library should not have an icon.",
-            Category.CORRECTNESS,
+            Category.ICONS,
             8,
             Severity.ERROR,
             new Implementation(IconInLibraryDetector.class, Scope.MANIFEST_SCOPE));
