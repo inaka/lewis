@@ -21,7 +21,7 @@ public class PackageManager {
         return context.getLocation(node);
     }
 
-    public static String getPreviousPackage(JavaContext context, Node node) {
+    public static boolean isGenerated(JavaContext context, Node node) {
         String packageName = context.getMainProject().getPackage();
         Location nodeLocation = getNodeLocation(context, node);
 
@@ -29,6 +29,6 @@ public class PackageManager {
 
         int findPackage = classLocationString.lastIndexOf(packageName);
 
-        return classLocationString.substring(0, findPackage);
+        return classLocationString.substring(0, findPackage).contains("generated");
     }
 }

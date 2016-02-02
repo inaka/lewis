@@ -25,6 +25,7 @@ public class LewisIssueRegistry extends IssueRegistry {
         issues.add(IconInLibraryDetector.ISSUE_ICON_IN_LIBRARY);
         issues.add(PermissionsInLibraryDetector.ISSUE_PERMISSION_USAGE_IN_LIBRARY);
         issues.add(JavaVariablesDetector.ISSUE_INSTANCE_VARIABLE_NAME);
+        issues.add(JavaVariablesDetector.ISSUE_STATIC_FINAL_VARIABLE_NAME);
         return issues;
     }
 

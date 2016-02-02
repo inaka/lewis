@@ -60,10 +60,9 @@ public class RootPackageDetector extends Detector implements Detector.JavaScanne
         String packageName = context.getMainProject().getPackage();
 
         String filePackageString = PackageManager.getPackage(context, node);
-        String previousPath = PackageManager.getPreviousPackage(context, node);
 
         if (filePackageString.equals(packageName + "." + fileName + ".java")
-                && !previousPath.contains("generated")) {
+                && !PackageManager.isGenerated(context, node)) {
             context.report(ISSUE_CLASS_IN_ROOT_PACKAGE, PackageManager.getNodeLocation(context, node),
                     " Expecting " + fileName + " not to be in root package " + packageName);
         }
