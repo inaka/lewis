@@ -10,8 +10,13 @@ This is an extension for Android Lint, adding new rules:
 * _LauncherActivityInLibrary_ : A library must not have a launcher activity. `ERROR`
 * _IconInLibrary_ : A library must not have icons. `ERROR`
 * _PermissionUsageInLibrary_ : A library must not use permissions. `ERROR`
-* _InstanceVariableName_ : Every instance variable must be named beginning with 'm' and using camelCase (except in models). `WARNING`
+* _InstanceVariableName_ : Every instance variable must be named beginning with 'm' and using camelCase. `WARNING`
 * _ClassConstantName_ : Every class constant (static and final) must be named using UPPER_SNAKE_CASE. `WARNING`
+
+> Exceptions to `InstanceVariableName` rule:
+>   1. The class is a `model` (should be inside a package called 'models').
+>   2. The variable is declared using `@Bind` or `@InjectView` (ButterKnife).
+
 
 ## Getting started
 
@@ -25,7 +30,12 @@ Enter to the project
 cd lewis/
 ```
 
-Build it and install it
+Build it 
+```bash
+./gradlew build
+```
+
+Install it
 ```bash
 ./gradlew install
 ```
@@ -35,7 +45,7 @@ Verify whether the issues are registered with lint
 lint --show RootPackage
 ```
 
-Run lint
+Go to any Android project and run lint
 ```bash
 ./gradlew lint
 ```

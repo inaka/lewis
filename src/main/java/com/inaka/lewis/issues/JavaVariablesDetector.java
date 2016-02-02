@@ -26,7 +26,8 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
             "InstanceVariableName",
             "An instance variable should be named beginning with 'm' and using camelCase.",
             "Every instance variable should be named beginning with 'm' and using camelCase, for example: 'mCounter'." +
-                    "Except if the class is a model (should be inside a package called 'models').",
+                    "Exceptions: the class is a model (should be inside a package called 'models'), " +
+                    "the variable is declared with @Bind or @InjectView from ButterKnife.",
             Category.TYPOGRAPHY,
             4,
             Severity.WARNING,
@@ -52,10 +53,12 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
 
                     Node classDeclaration = node.getParent();
 
+                    String nodeString = node.toString();
+
                     VariableDefinitionEntry variableDefinition = node.astDefinition().astVariables().first();
                     String name = variableDefinition.astName().astValue();
 
-                    if (!isStaticOrFinal(node) && !isModel(context, classDeclaration)) {
+                    if (!isStaticOrFinal(node) && !isModel(context, classDeclaration) && !isWidget(nodeString)) {
                         if (!instanceVariableCorrectFormat(name)) {
                             context.report(ISSUE_INSTANCE_VARIABLE_NAME, context.getLocation(node),
                                     "Expecting " + name + " to begin with 'm' and be written in camelCase.");
@@ -72,6 +75,10 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
             }
 
         };
+    }
+
+    private boolean isWidget(String nodeString) {
+        return nodeString.contains("@InjectView") || nodeString.contains("@Bind");
     }
 
     private boolean isStaticOrFinal(VariableDeclaration variableDeclaration) {
