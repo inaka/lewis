@@ -11,6 +11,7 @@ This is an extension for Android Lint, adding new rules:
 * _IconInLibrary_ : A library must not have icons. `ERROR`
 * _PermissionUsageInLibrary_ : A library must not use permissions. `ERROR`
 * _InstanceVariableName_ : Every instance variable must begin with 'm' and be written using camelCase (except in model classes). `WARNING`
+* _StaticFinalVariableName_ : A static final variable should be named using UPPER_SNAKE_CASE. `WARNING`
 
 ## Getting started
 
