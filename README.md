@@ -10,8 +10,13 @@ This is an extension for Android Lint, adding new rules:
 * _LauncherActivityInLibrary_ : A library must not have a launcher activity. `ERROR`
 * _IconInLibrary_ : A library must not have icons. `ERROR`
 * _PermissionUsageInLibrary_ : A library must not use permissions. `ERROR`
-* _InstanceVariableName_ : Every instance variable must be named beginning with 'm' and using camelCase (except in models). `WARNING`
+* _InstanceVariableName_ : Every instance variable must be named beginning with 'm' and using camelCase. `WARNING`
 * _ClassConstantName_ : Every class constant (static and final) must be named using UPPER_SNAKE_CASE. `WARNING`
+
+> `Exceptions to InstanceVariableName rule: `
+>   ` * The class is a model (should be inside a package called 'models').`
+>   ` * The variable is declared using @Bind or @InjectView (ButterKnife).`
+
 
 ## Getting started
 
