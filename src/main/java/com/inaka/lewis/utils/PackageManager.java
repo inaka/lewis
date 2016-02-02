@@ -17,11 +17,11 @@ public class PackageManager {
         return classLocationString.substring(findPackage);
     }
 
-    public static Location getNodeLocation(JavaContext context, Node node){
-        return  context.getLocation(node);
+    public static Location getNodeLocation(JavaContext context, Node node) {
+        return context.getLocation(node);
     }
 
-    public static String getPreviousPackage(JavaContext context, Node node){
+    public static String getPreviousPackage(JavaContext context, Node node) {
         String packageName = context.getMainProject().getPackage();
         Location nodeLocation = getNodeLocation(context, node);
 
