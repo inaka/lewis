@@ -13,9 +13,9 @@ This is an extension for Android Lint, adding new rules:
 * _InstanceVariableName_ : Every instance variable must be named beginning with 'm' and using camelCase. `WARNING`
 * _ClassConstantName_ : Every class constant (static and final) must be named using UPPER_SNAKE_CASE. `WARNING`
 
-> `Exceptions to InstanceVariableName rule: `
->   ` * The class is a model (should be inside a package called 'models').`
->   ` * The variable is declared using @Bind or @InjectView (ButterKnife).`
+> Exceptions to `InstanceVariableName` rule:
+>   1. The class is a `model` (should be inside a package called 'models').
+>   2. The variable is declared using `@Bind` or `@InjectView` (ButterKnife).
 
 
 ## Getting started
