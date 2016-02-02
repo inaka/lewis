@@ -136,7 +136,6 @@ public class LauncherActivityTest extends LintDetectorTest {
 
         String expected = "No warnings.";
 
-
         String result = lintProject(xml(FN_ANDROID_MANIFEST_XML, "" +
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<manifest package=\"com.example.android.custom-lint-rules\"\n" +

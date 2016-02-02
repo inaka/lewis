@@ -11,7 +11,7 @@ This is an extension for Android Lint, adding new rules:
 * _IconInLibrary_ : A library must not have icons. `ERROR`
 * _PermissionUsageInLibrary_ : A library must not use permissions. `ERROR`
 * _InstanceVariableName_ : Every instance variable must be named beginning with 'm' and using camelCase (except in models). `WARNING`
-* _StaticFinalVariableName_ : Every static final variable must be named using UPPER_SNAKE_CASE. `WARNING`
+* _ClassConstantName_ : Every class constant (static and final) must be named using UPPER_SNAKE_CASE. `WARNING`
 
 ## Getting started
 
@@ -25,14 +25,9 @@ Enter to the project
 cd lewis/
 ```
 
-Build it
+Build it and install it
 ```bash
-./gradlew build
-```
-
-Copy the .jar file to the lint folder
-```bash
-cp ./build/libs/lewis.jar ~/.android/lint/
+./gradlew install
 ```
 
 Verify whether the issues are registered with lint

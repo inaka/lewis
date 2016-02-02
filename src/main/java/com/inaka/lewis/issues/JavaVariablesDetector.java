@@ -32,10 +32,10 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
             Severity.WARNING,
             new Implementation(JavaVariablesDetector.class, Scope.JAVA_FILE_SCOPE));
 
-    public static final Issue ISSUE_STATIC_FINAL_VARIABLE_NAME = Issue.create(
-            "StaticFinalVariableName",
-            "A static final variable should be named using UPPER_SNAKE_CASE.",
-            "Every static final variable should be named using UPPER_SNAKE_CASE.",
+    public static final Issue ISSUE_CLASS_CONSTANT_NAME = Issue.create(
+            "ClassConstantName",
+            "A class constant should be named using UPPER_SNAKE_CASE.",
+            "Every class constant (static and final) should be named using UPPER_SNAKE_CASE.",
             Category.TYPOGRAPHY,
             4,
             Severity.WARNING,
@@ -62,7 +62,7 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
                         }
                     } else if (isStaticAndFinal(node)) {
                         if (!staticFinalCorrectFormat(name)) {
-                            context.report(ISSUE_STATIC_FINAL_VARIABLE_NAME, context.getLocation(node),
+                            context.report(ISSUE_CLASS_CONSTANT_NAME, context.getLocation(node),
                                     "Expecting " + name + " to be named using UPPER_SNAKE_CASE.");
                         }
                     }
@@ -118,7 +118,6 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
         MethodDeclaration methodDeclaration = variableDeclaration.astDefinition().upIfParameterToMethodDeclaration();
         ConstructorDeclaration constructorDeclaration = variableDeclaration.astDefinition().upIfParameterToConstructorDeclaration();
         Block block = variableDeclaration.astDefinition().upUpIfLocalVariableToBlock();
-
         return methodDeclaration == null && constructorDeclaration == null && block == null;
     }
 }
