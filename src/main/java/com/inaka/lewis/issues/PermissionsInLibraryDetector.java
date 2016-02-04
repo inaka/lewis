@@ -53,7 +53,7 @@ public class PermissionsInLibraryDetector extends ResourceXmlDetector implements
     @Override
     public void afterCheckProject(@NonNull Context context) {
 
-        // if it's not a library, it's an application
+        // if it is a library
         if (context.getProject() == context.getMainProject() && context.getMainProject().isLibrary()) {
             for (Location location : mPermissionTagsLocations) {
                 context.report(ISSUE_PERMISSION_USAGE_IN_LIBRARY, location,

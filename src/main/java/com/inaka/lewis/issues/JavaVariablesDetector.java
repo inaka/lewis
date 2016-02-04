@@ -77,10 +77,22 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
         };
     }
 
+    /**
+     * Return if the node is a widget (dependencies injection with ButterKnife).
+     *
+     * @param nodeString string representing a VariableDeclaration.
+     * @return true if it is a widget, false if not.
+     */
     private boolean isWidget(String nodeString) {
         return nodeString.contains("@InjectView") || nodeString.contains("@Bind");
     }
 
+    /**
+     * Return if the variable is static or final.
+     *
+     * @param variableDeclaration the variable to evaluate.
+     * @return true if it is static or final, false if not.
+     */
     private boolean isStaticOrFinal(VariableDeclaration variableDeclaration) {
         boolean isStaticOrFinal = false;
         for (KeywordModifier keywordModifier : variableDeclaration.astDefinition().astModifiers().astKeywords()) {
@@ -91,6 +103,12 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
         return isStaticOrFinal;
     }
 
+    /**
+     * Return if the variable is static and final.
+     *
+     * @param variableDeclaration the variable to evaluate.
+     * @return true if it is static and final, false if not.
+     */
     private boolean isStaticAndFinal(VariableDeclaration variableDeclaration) {
         boolean isStatic = false;
         boolean isFinal = false;
@@ -107,24 +125,50 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
         return isStatic && isFinal;
     }
 
+    /**
+     * Check if an instance variable has the correct format (camelCase and begin with 'm').
+     *
+     * @param name is the name of the variable.
+     * @return true if has the correct format, false if not.
+     */
     private boolean instanceVariableCorrectFormat(String name) {
         return name.startsWith("m") && Character.isUpperCase(name.charAt(1))
                 && !name.contains("_") && !name.contains("-");
     }
 
+    /**
+     * Check if a class constant has the correct format (UPPER_SNAKE_CASE).
+     *
+     * @param name is the name of the constant.
+     * @return true if has the correct format, false if not.
+     */
     private boolean staticFinalCorrectFormat(String name) {
         return name.equals(name.toUpperCase());
     }
 
+    /**
+     * Check if a class is a Model (is inside a package called 'models').
+     *
+     * @param context          is the context of the Java code.
+     * @param classDeclaration represents the class.
+     * @return true if it is a model, false if not.
+     */
     private boolean isModel(JavaContext context, Node classDeclaration) {
         String classFilePackage = PackageManager.getPackage(context, classDeclaration);
         return classFilePackage.contains(".models.");
     }
 
+    /**
+     * Check if a variable declaration if inside a class scope (skip other local variables).
+     *
+     * @param variableDeclaration represents the variable.
+     * @return true if it is inside a class, false if not.
+     */
     private boolean hasClassParent(VariableDeclaration variableDeclaration) {
         MethodDeclaration methodDeclaration = variableDeclaration.astDefinition().upIfParameterToMethodDeclaration();
         ConstructorDeclaration constructorDeclaration = variableDeclaration.astDefinition().upIfParameterToConstructorDeclaration();
         Block block = variableDeclaration.astDefinition().upUpIfLocalVariableToBlock();
         return methodDeclaration == null && constructorDeclaration == null && block == null;
     }
+
 }
