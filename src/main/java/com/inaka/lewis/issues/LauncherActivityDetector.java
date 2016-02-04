@@ -117,8 +117,8 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
     /**
      * Returns true if the XML node is an activity with a launcher intent.
      *
-     * @param node The node to check.
-     * @return true if the node is an activity with a launcher intent.
+     * @param node is the node to check.
+     * @return true if the node is an activity with a launcher intent, false if not.
      */
     private boolean isMainActivity(XmlContext context, Node node) {
 

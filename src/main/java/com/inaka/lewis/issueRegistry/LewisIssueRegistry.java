@@ -15,6 +15,11 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class LewisIssueRegistry extends IssueRegistry {
 
+    /**
+     * Get issues
+     *
+     * @return the list of new issues to add.
+     */
     @Override
     public List<Issue> getIssues() {
         List<Issue> issues = new ArrayList<Issue>();
