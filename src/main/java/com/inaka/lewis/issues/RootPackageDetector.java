@@ -58,8 +58,8 @@ public class RootPackageDetector extends Detector implements Detector.JavaScanne
     /**
      * Check if the node is inside the root package and report an issue in that case.
      *
-     * @param context is the context of the Java code.
-     * @param node represents the element to evaluate.
+     * @param context  is the context of the Java code.
+     * @param node     represents the element to evaluate.
      * @param fileName is the name of the file.
      */
     private void shouldNotBeInRootPackage(JavaContext context, Node node, String fileName) {
