@@ -8,7 +8,7 @@ import com.inaka.lewis.issues.LauncherActivityDetector;
 import com.inaka.lewis.issues.PermissionsInLibraryDetector;
 import com.inaka.lewis.issues.RootPackageDetector;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -22,16 +22,15 @@ public class LewisIssueRegistry extends IssueRegistry {
      */
     @Override
     public List<Issue> getIssues() {
-        List<Issue> issues = new ArrayList<Issue>();
-        issues.add(RootPackageDetector.ISSUE_CLASS_IN_ROOT_PACKAGE);
-        issues.add(LauncherActivityDetector.ISSUE_MISSING_LAUNCHER);
-        issues.add(LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER);
-        issues.add(LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY);
-        issues.add(IconInLibraryDetector.ISSUE_ICON_IN_LIBRARY);
-        issues.add(PermissionsInLibraryDetector.ISSUE_PERMISSION_USAGE_IN_LIBRARY);
-        issues.add(JavaVariablesDetector.ISSUE_INSTANCE_VARIABLE_NAME);
-        issues.add(JavaVariablesDetector.ISSUE_CLASS_CONSTANT_NAME);
-        return issues;
+        return Arrays.asList(
+                RootPackageDetector.ISSUE_CLASS_IN_ROOT_PACKAGE,
+                LauncherActivityDetector.ISSUE_MISSING_LAUNCHER,
+                LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER,
+                LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY,
+                IconInLibraryDetector.ISSUE_ICON_IN_LIBRARY,
+                PermissionsInLibraryDetector.ISSUE_PERMISSION_USAGE_IN_LIBRARY,
+                JavaVariablesDetector.ISSUE_INSTANCE_VARIABLE_NAME,
+                JavaVariablesDetector.ISSUE_CLASS_CONSTANT_NAME);
     }
 
 }
