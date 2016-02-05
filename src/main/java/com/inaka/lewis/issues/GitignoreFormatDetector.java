@@ -1,7 +1,6 @@
 package com.inaka.lewis.issues;
 
 import com.android.annotations.NonNull;
-import com.android.tools.lint.checks.PrivateKeyDetector;
 import com.android.tools.lint.detector.api.Category;
 import com.android.tools.lint.detector.api.Context;
 import com.android.tools.lint.detector.api.Detector;
@@ -94,12 +93,10 @@ public class GitignoreFormatDetector extends Detector implements Detector.OtherF
             mIsBuild = content.contains(Constants.GITIGNORE_BUILD);
             mIsCaptures = content.contains(Constants.GITIGNORE_CAPTURES);
 
-            boolean result = mIsGradle && mIsLocalProperties && mIsIdea && mIsDSStore && mIsBuild && mIsCaptures;
-
             completeNotFoundList();
 
+            return mIsGradle && mIsLocalProperties && mIsIdea && mIsDSStore && mIsBuild && mIsCaptures;
 
-            return result;
         } catch (IOException e) {
             e.printStackTrace();
         }
