@@ -71,7 +71,7 @@ public class LauncherActivityDetector extends ResourceXmlDetector implements Det
     private boolean mHasLauncherActivity;
 
     /**
-     * The lacation of the <application> tag
+     * The location of the <application> tag
      */
     private Location mApplicationTagLocation;
 

@@ -139,7 +139,7 @@ public class LauncherActivityTest extends LintDetectorTest {
         String result = lintProject(xml(FN_ANDROID_MANIFEST_XML, "" +
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<manifest package=\"com.example.android.custom-lint-rules\"\n" +
-                "          xmlns:android=\"http://schemas.android.com/apk/res/android\">\n" +
+                "          >\n" +
                 "</manifest>"));
 
         assertEquals(expected, result);
@@ -159,7 +159,7 @@ public class LauncherActivityTest extends LintDetectorTest {
         String result = lintProject(xml(FN_ANDROID_MANIFEST_XML, "" +
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<manifest package=\"com.example.android.custom-lint-rules\"\n" +
-                "          xmlns:android=\"http://schemas.android.com/apk/res/android\">\n" +
+                "          >\n" +
                 "    <application>\n" +
                 "    </application>\n" +
                 "</manifest>"));
