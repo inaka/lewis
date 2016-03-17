@@ -2,6 +2,7 @@ package com.inaka.lewis.issueRegistry;
 
 import com.android.tools.lint.client.api.IssueRegistry;
 import com.android.tools.lint.detector.api.Issue;
+import com.inaka.lewis.issues.HardcodedTextDetectorModified;
 import com.inaka.lewis.issues.IconInLibraryDetector;
 import com.inaka.lewis.issues.JavaVariablesDetector;
 import com.inaka.lewis.issues.LauncherActivityDetector;
@@ -23,6 +24,7 @@ public class LewisIssueRegistry extends IssueRegistry {
     @Override
     public List<Issue> getIssues() {
         return Arrays.asList(
+                HardcodedTextDetectorModified.ISSUE,
                 RootPackageDetector.ISSUE_CLASS_IN_ROOT_PACKAGE,
                 LauncherActivityDetector.ISSUE_MISSING_LAUNCHER,
                 LauncherActivityDetector.ISSUE_MORE_THAN_ONE_LAUNCHER,
