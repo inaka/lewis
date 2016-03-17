@@ -30,16 +30,16 @@ public class HardcodedTextDetectorModified extends LayoutDetector {
             "HardcodedText",
             "Hardcoded text",
             "This string cannot be hardcoded.\n" +
-            "Hardcoding text attributes directly in layout files is bad for several reasons:\n" +
-            "\n" +
-            "* When creating configuration variations (for example for landscape or portrait)" +
-            "you have to repeat the actual text (and keep it up to date when making changes)\n" +
-            "\n" +
-            "* The application cannot be translated to other languages by just adding new " +
-            "translations for existing string resources.\n" +
-            "\n" +
-            "In Android Studio and Eclipse there are quickfixes to automatically extract this " +
-            "hardcoded string into a resource lookup.",
+                    "Hardcoding text attributes directly in layout files is bad for several reasons:\n" +
+                    "\n" +
+                    "* When creating configuration variations (for example for landscape or portrait)" +
+                    "you have to repeat the actual text (and keep it up to date when making changes)\n" +
+                    "\n" +
+                    "* The application cannot be translated to other languages by just adding new " +
+                    "translations for existing string resources.\n" +
+                    "\n" +
+                    "In Android Studio and Eclipse there are quickfixes to automatically extract this " +
+                    "hardcoded string into a resource lookup.",
             Category.I18N,
             8,
             Severity.ERROR,
@@ -79,8 +79,7 @@ public class HardcodedTextDetectorModified extends LayoutDetector {
                 return;
             }
             context.report(ISSUE, attribute, context.getLocation(attribute),
-                    String.format("[I18N] Hardcoded string \"%1$s\", should use `@string` resource",
-                            value));
+                    String.format("[I18N] Hardcoded string \"%1$s\", should use `@string` resource", value));
         }
     }
 

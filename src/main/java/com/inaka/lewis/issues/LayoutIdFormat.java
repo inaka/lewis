@@ -58,8 +58,8 @@ public class LayoutIdFormat extends LayoutDetector {
             }
 
             value = value.substring(5); // ignore "@+id/"
-            
-            if(!idCorrectFormat(value)){
+
+            if (!idCorrectFormat(value)) {
                 context.report(ISSUE, attribute, context.getLocation(attribute),
                         String.format("The id \"%1$s\", should be written using lowerCamelCase.", value));
             }
@@ -67,6 +67,12 @@ public class LayoutIdFormat extends LayoutDetector {
         }
     }
 
+    /**
+     * Check if an id has the correct format (lowerCamelCase)
+     *
+     * @param value is the id
+     * @return true if has the correct format, false if not.
+     */
     private boolean idCorrectFormat(String value) {
         return Character.isLowerCase(value.charAt(0)) && !value.contains("_") && !value.contains("-");
     }
