@@ -1,5 +1,5 @@
-# lewis
-Rock your Android
+# andlint
+Linting extension for Android
 
 ## Purpose
 
@@ -9,27 +9,20 @@ This is an extension for Android Lint, adding new rules:
 * _MoreThanOneLauncher_ : The application must have only one launcher activity. `WARNING`
 * _LauncherActivityInLibrary_ : A library must not have a launcher activity. `ERROR`
 * _IconInLibrary_ : A library must not have icons. `ERROR`
-* _PermissionUsageInLibrary_ : A library must not use permissions. `ERROR`
-* _InstanceVariableName_ : Every instance variable must be named beginning with 'm' and using camelCase. `WARNING`
+* _PermissionUsageInLibrary_ : A library must not use permissions. `WARNING`
 * _ClassConstantName_ : Every class constant (static and final) must be named using UPPER_SNAKE_CASE. `WARNING`
-* _HardcodedText_ : A string cannot be hardcoded inside layouts or menus. Now this is an error, not a warning. `ERROR`
 * _LayoutIDFormat_ : Every id inside layouts or menus must be named using lowerCamelCase. `ERROR`
-
-> Exceptions to `InstanceVariableName` rule:
->   1. The class is a `model` (should be inside a package called 'models').
->   2. The variable is declared using `@Bind` or `@InjectView` (ButterKnife).
-
 
 ## Getting started
 
 Clone this repository
 ```bash
-git clone https://github.com/inaka/lewis.git
+git clone https://github.com/Hazer/andlint.git
 ```
 
 Enter to the project
 ```bash
-cd lewis/
+cd andlint/
 ```
 
 Build it 
