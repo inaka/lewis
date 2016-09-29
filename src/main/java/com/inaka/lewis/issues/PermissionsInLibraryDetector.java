@@ -29,8 +29,8 @@ public class PermissionsInLibraryDetector extends ResourceXmlDetector implements
             "Permission usage in library",
             "This library should not have a permission invocation.",
             Category.CORRECTNESS,
-            8,
-            Severity.ERROR,
+            5,
+            Severity.WARNING,
             new Implementation(PermissionsInLibraryDetector.class, Scope.MANIFEST_SCOPE));
 
     private List<Location> mPermissionTagsLocations;
