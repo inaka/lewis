@@ -31,9 +31,7 @@ public class LewisIssueRegistry extends IssueRegistry {
                 LauncherActivityDetector.ISSUE_LAUNCHER_ACTIVITY_IN_LIBRARY,
                 IconInLibraryDetector.ISSUE_ICON_IN_LIBRARY,
                 PermissionsInLibraryDetector.ISSUE_PERMISSION_USAGE_IN_LIBRARY,
-                JavaVariablesDetector.ISSUE_INSTANCE_VARIABLE_NAME,
                 JavaVariablesDetector.ISSUE_CLASS_CONSTANT_NAME,
-                HardcodedTextDetectorModified.ISSUE,
                 LayoutIdFormat.ISSUE);
     }
 
