@@ -22,17 +22,6 @@ import lombok.ast.VariableDefinitionEntry;
 
 public class JavaVariablesDetector extends Detector implements Detector.JavaScanner {
 
-    public static final Issue ISSUE_INSTANCE_VARIABLE_NAME = Issue.create(
-            "InstanceVariableName",
-            "An instance variable should be named beginning with 'm' and using camelCase.",
-            "Every instance variable should be named beginning with 'm' and using camelCase, for example: 'mCounter'." +
-                    "Exceptions: the class is a model (should be inside a package called 'models'), " +
-                    "the variable is declared with @Bind or @InjectView from ButterKnife.",
-            Category.TYPOGRAPHY,
-            4,
-            Severity.WARNING,
-            new Implementation(JavaVariablesDetector.class, Scope.JAVA_FILE_SCOPE));
-
     public static final Issue ISSUE_CLASS_CONSTANT_NAME = Issue.create(
             "ClassConstantName",
             "A class constant should be named using UPPER_SNAKE_CASE.",
@@ -58,12 +47,7 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
                     VariableDefinitionEntry variableDefinition = node.astDefinition().astVariables().first();
                     String name = variableDefinition.astName().astValue();
 
-                    if (!isStaticOrFinal(node) && !isModel(context, classDeclaration) && !isWidget(nodeString)) {
-                        if (!instanceVariableCorrectFormat(name)) {
-                            context.report(ISSUE_INSTANCE_VARIABLE_NAME, context.getLocation(node),
-                                    "Expecting " + name + " to begin with 'm' and be written in camelCase.");
-                        }
-                    } else if (isStaticAndFinal(node)) {
+                    if (isStaticAndFinal(node)) {
                         if (!staticFinalCorrectFormat(name)) {
                             context.report(ISSUE_CLASS_CONSTANT_NAME, context.getLocation(node),
                                     "Expecting " + name + " to be named using UPPER_SNAKE_CASE.");
@@ -123,17 +107,6 @@ public class JavaVariablesDetector extends Detector implements Detector.JavaScan
         }
 
         return isStatic && isFinal;
-    }
-
-    /**
-     * Check if an instance variable has the correct format (camelCase and begin with 'm').
-     *
-     * @param name is the name of the variable.
-     * @return true if has the correct format, false if not.
-     */
-    private boolean instanceVariableCorrectFormat(String name) {
-        return name.startsWith("m") && Character.isUpperCase(name.charAt(1))
-                && !name.contains("_") && !name.contains("-");
     }
 
     /**
